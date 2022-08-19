@@ -43,9 +43,10 @@
             <br>
             <div>
                 <label for="name">Who's Buying: </label>
-                <input type="text" name="name" id="name" x-model="username">
-                <button>Submit</button>
+                <input type="text" name="name" id="name" x-model="userInput">
+                <button @click="createUser">Submit</button>
             </div>
+            
             <div x-text="message"></div>
             <div x-text="username"></div>
             <div x-text="cart_code"></div>
@@ -98,8 +99,8 @@
                                         <label for="">Payment amount</label>
                                         <input class="input" type="number" placeholder="Payment amount" x-model="paymentAmount">
                                         <button x-on:click="checkOutPizza" class="btn btn-outline-success"" >
-                                                <img src=" ./images/shopping-cart.png" width="20" alt="">
-                                                Pay Now
+                                            <i class="bi bi-cart4"></i>
+                                            Pay Now
                                         </button>
                                     </div>
                                     <div>
@@ -133,7 +134,7 @@
                                 </div>
                                 <div class="card-body text-center">
                                     <h5 class="card-title" x-text="`${pizza.flavour}`"></h5>
-                                    <span>R <span x-text=`${pizza.price}`></span></span>
+                                    <span class="display-6">R <span x-text=`${pizza.price}`></span></span>
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                         Recusandae, tempora.</p>
                                     <a href="" class="btn btn-success" x-on:click="add(pizza)">Buy Pizza..</a>
@@ -150,8 +151,11 @@
                 <template x-for="pizza in pizzas">
                     <tr>
                         <div>
-                            <td>
+<!--                             <td>
                                 <img src="./images/pizzaimg.png" alt="" height=50 width=50 style="border-radius: 60%;">
+                            </td>  -->
+                            <td>
+                                <img x-bind:src="`./images/${pizza.size}.jfif`" alt="" height=50 width=50 style="border-radius: 50%;">
                             </td>
                             <td x-text="pizza.flavour"></td>
                             <td x-text="pizza.size"></td>

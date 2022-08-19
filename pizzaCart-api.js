@@ -6,7 +6,8 @@ document.addEventListener('alpine:init', () => {
       buyer:true,
       paymentMessage:'',
       paymentAmount:0.00,
-      username:'maduna',
+      userInput:'',
+      username:'mangaliso',
       cart_code: '',
       pizzas: [],
       featured:[],
@@ -24,6 +25,7 @@ document.addEventListener('alpine:init', () => {
           .then(() => {
             return this.createCart()
           })
+          
           .then((result) => {
             console.log(result.data)
             
@@ -43,6 +45,10 @@ document.addEventListener('alpine:init', () => {
             this.cartObj=result.data
           })
       },
+      createUser(){
+        this.username = this.userInput
+        console.log(this.username)
+      }, 
       createCart() {
         const createURL = 'https://pizza-cart-api.herokuapp.com/api/pizza-cart/create?username=' + this.username
         return axios
@@ -109,9 +115,17 @@ document.addEventListener('alpine:init', () => {
       },
       OrderHistory(){
         ordersUrl = `https://pizza-cart-api.herokuapp.com/api/pizza-cart/username/${this.username}`
+        
         axios.get(ordersUrl).then((result)=>{
           this.clist = result.data
           console.log(this.clist)
+          
+        })
+      },
+      getActiveCart(){
+        activeCartUrl = `https://pizza-cart-api.herokuapp.com/api/pizza-cart/username/${this.username}/active`
+        axios.get(activeCartUrl).then(function(result){
+          console.log(result.data)
         })
       }
     }
