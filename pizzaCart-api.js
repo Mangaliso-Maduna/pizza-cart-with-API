@@ -97,6 +97,7 @@ document.addEventListener('alpine:init', () => {
             setTimeout(()=>{
                 this.checkOutPayment=false
                 //this.clearCart();
+                location.reload()
             },3000)
             
         }else{
